@@ -1,6 +1,6 @@
 <x-admin-layout>
     <x-slot name="header">
-        <h2 class="text-xl leading-tight">
+        <h2 class="text-xl leading-tight py-2">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>

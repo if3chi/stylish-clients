@@ -20,6 +20,8 @@
     <!--Replace with your tailwind.css once created-->
     <link href="{{ asset('css/chartist.min.css') }}" rel="stylesheet">
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> --}}
+
+    @livewireStyles
 </head>
 
 <body class="flex h-screen bg-gray-100 font-sans">
@@ -32,13 +34,15 @@
         @include('partials.nav')
 
             <header class="bg-white shadow w-full flex-wrap text-indigo-800 tracking-wide font-bold">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
         {{ $slot }}
 
     </div>
+
+    @livewireScripts
 
     {{-- <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> --}}
     <script src="{{ asset('js/chartist.min.js') }}"></script>
