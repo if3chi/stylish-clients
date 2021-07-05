@@ -44,7 +44,7 @@
 
     @livewireScripts
 
-    {{-- <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script> --}}
+    <script src="{{ asset('js/alpinejs.js') }}" defer></script>
     <script src="{{ asset('js/chartist.min.js') }}"></script>
     <script>
         /* Refer to https://gionkunz.github.io/chartist-js/examples.html for setting up the graphs */
