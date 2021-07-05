@@ -64,34 +64,32 @@
                 <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
                   <!-- Client name -->
                   <x-input.group>
-                    <x-input.text type="text" label='First Name' name="firstname" id="firstname" placeholder="Ama">
+                    <x-input.text type="text" label='First Name' for="firstname" name="firstname" id="firstname" placeholder="Ama">
                       <x-slot name="icon">
-                        <x-icon.user class="w-4 h4" />
+                        <x-icon.user class="w-4 h-4" />
                       </x-slot>
                     </x-input.text>
                   </x-input.group>
 
                   <x-input.group>
-                    <x-input.text type="text" label='Last Name' name="lastname" id="lastname" placeholder="Kojo">
+                    <x-input.text type="text" label='Last Name' for="lastname" name="lastname" id="lastname" placeholder="Kojo">
                       <x-slot name="icon">
-                        <x-icon.user class="w-4 h4" />
+                        <x-icon.user class="w-4 h-4" />
                       </x-slot>
                     </x-input.text>
                   </x-input.group>
                   
                   <!-- Image -->
                   <x-input.group>
-                    <x-input.file label="Photo">
-                      <x-slot name="icon">
+                    <x-input.file label="Photo" for="photo" id="photo" secLabel="Upload Image">
                         <x-icon.avatar/>
-                      </x-slot>
                     </x-input.file>
                   </x-input.group>
                   
                   <!-- Phone -->
                   <fieldset class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:px-6 sm:py-5">
                     <div>
-                      <legend class="block text-sm font-medium text-gray-900 sm:mt-px sm:pt-2">Phone Number</legend>
+                      <label for="country" class="block text-sm font-medium text-gray-900 sm:mt-px sm:pt-2">Phone Number</label>
                     </div>
                     <div class="sm:col-span-2">
                       <div>
@@ -102,24 +100,33 @@
                         </select>
                       </div>
                       <div>
-                        <label for="postal-code" class="sr-only">Number</label>
-                        <input type="text" name="postal-code" id="postal-code" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm border-gray-300" placeholder="0241234567">
+                        <label for="phone" class="sr-only">Number</label>
+                        <input type="text" name="phone" id="phone" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm border-gray-300" placeholder="0241234567">
                       </div>
                     </div>
                   </fieldset>
 
                   <!-- Email -->
                   <x-input.group>
-                    <x-input.text type="email" label="Client's Email" name="email" id="email" placeholder="client@email.com">
+                    <x-input.text type="email" label="Client's Email" name="email" id="email" for="email" placeholder="client@email.com">
                       <x-slot name="icon">
                         <x-icon.mail class="w-4 h4" />
+                      </x-slot>
+                    </x-input.text>
+                  </x-input.group>
+
+                  <!-- Birthday -->
+                  <x-input.group>
+                    <x-input.text type="text" label="Client's Birthday" name="birthday" id="birthday" for="birthday" placeholder="MM/DD/YYYY">
+                      <x-slot name="icon">
+                        <x-icon.calendar class="w-4 h4" />
                       </x-slot>
                     </x-input.text>
                   </x-input.group>
                   
                   <!-- Address -->
                   <x-input.group>
-                    <x-input.text type="text" label="Client's Address" name="address" id="address" placeholder="No.: 2 that house on the right.">
+                    <x-input.text type="text" label="Client's Address" name="address" id="address" for="address" placeholder="No.: 2 that house on the right.">
                       <x-slot name="icon">
                         <x-icon.home class="w-4 h4" />
                       </x-slot>
@@ -128,7 +135,7 @@
                   
                   <!-- Client Type -->
                   <x-input.group>
-                    <x-input.select label="Client Type"/>
+                    <x-input.select label="Client Type" for="clientType" id="clientType"/>
                   </x-input.group>
                 </div>
               </div>
