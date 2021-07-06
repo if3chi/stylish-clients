@@ -117,11 +117,9 @@
 
                   <!-- Birthday -->
                   <x-input.group>
-                    <x-input.text type="text" label="Client's Birthday" name="birthday" id="birthday" for="birthday" placeholder="MM/DD/YYYY">
-                      <x-slot name="icon">
+                    <x-input.date wire:model="birthday" :error="$errors->first('birthday')" type="text" label="Client's Birthday" name="birthday" id="birthday" for="birthday" placeholder="MM/DD/YYYY">
                         <x-icon.calendar class="w-4 h4" />
-                      </x-slot>
-                    </x-input.text>
+                    </x-input.date>
                   </x-input.group>
                   
                   <!-- Address -->
@@ -157,3 +155,13 @@
       </div>
     </div>
   </div>
+
+
+@push('styles')
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/pikaday.css') }}">
+@endpush
+
+@push('scripts')
+  <script src="{{ asset('js/moment.js') }}"></script>
+  <script src="{{ asset('js/pikaday.js') }}"></script>
+@endpush

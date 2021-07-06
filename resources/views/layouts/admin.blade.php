@@ -22,6 +22,7 @@
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css"> --}}
 
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="flex h-screen bg-gray-100 font-sans">
@@ -43,7 +44,7 @@
     </div>
 
     @livewireScripts
-
+    @stack('scripts')
     <script src="{{ asset('js/alpinejs.js') }}" defer></script>
     <script src="{{ asset('js/chartist.min.js') }}"></script>
     <script>
