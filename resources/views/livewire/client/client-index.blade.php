@@ -1,18 +1,19 @@
 <div class="w-full">
-    <x-slot name="header">
+    <header class="bg-white shadow w-full flex-wrap text-indigo-800 tracking-wide font-bold">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
         <div class="flex flex-row justify-">
             <h2 class="flex-1 text-xl leading-tight py-2">
                 {{ __('Clients') }}
             </h2>
             <span class="sm:ml-3">
-                <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 border-indigo-600 focus:ring-offset-2 focus:ring-indigo-500">
+                    <button wire:click="getForm" type="button" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 border-indigo-600 focus:ring-offset-2 focus:ring-indigo-500">
                   <x-icon.user-plus/>
-                  Add New Client
+                      {{ __('Add New Client') }}
                 </button>
             </span>
-          
         </div>
-    </x-slot>
+        </div>
+    </header>
 
     <div id="" class="w-full flex-1">
 

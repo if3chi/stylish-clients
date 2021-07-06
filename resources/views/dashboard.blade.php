@@ -1,9 +1,11 @@
 <x-admin-layout>
-    <x-slot name="header">
-        <h2 class="text-xl leading-tight py-2">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <header class="bg-white shadow w-full flex-wrap text-indigo-800 tracking-wide font-bold">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-xl leading-tight py-2">
+                {{ __('Dashboard') }}
+            </h2>
+        </div>
+    </header>
 
      <!--Dash Content -->
      <div id="dash-content" class="bg-gray-200 py-6 lg:py-0 w-full lg:max-w-sm flex flex-wrap content-start">
