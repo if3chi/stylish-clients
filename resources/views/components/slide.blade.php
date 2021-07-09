@@ -44,8 +44,13 @@
                 <div class="px-4 py-6 bg-gray-50 sm:px-6">
                   <div class="flex items-start justify-between space-x-3">
                     <div class="space-y-1">
-                      <h2 class="flex items-center text-lg font-medium text-gray-900" id="slide-over-title">
-                        <x-icon.user-plus/> {{ $title }}
+                      <h2 class="flex items-center text-lg font-medium text-indigo-800" id="slide-over-title">
+                        @if ( $title === 'Edit')
+                          <x-icon.edit class="w-8 h-8 mr-2" />
+                        @else
+                          <x-icon.user-plus/> 
+                        @endif                        
+                        {{ $title }} Client
                       </h2>
                       <p class="text-sm text-gray-500">
                         {{ $message }}
