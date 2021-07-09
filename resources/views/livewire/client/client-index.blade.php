@@ -72,7 +72,7 @@
                                 <div class="text-sm text-gray-500">{{ "Birthday in: ".$client->due_birthday.' Days.' }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                New Client
+                                {{ $client->type }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">

@@ -15,13 +15,14 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('image')->default('client.jpg');
+            $table->string('clientImage')->default('client.jpg');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone', 32);
             $table->string('email')->nullable();
             $table->tinyText('address')->nullable();
             $table->date('dob');
+            $table->string('type');
             $table->timestamps();
             $table->softDeletes();
         });
