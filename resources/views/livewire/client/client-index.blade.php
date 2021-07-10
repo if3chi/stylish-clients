@@ -84,7 +84,21 @@
                             </td>
                         </tr>
                         @empty
-                            
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="flex flex-col justify-center">
+                                        <p class="text-base leading-tight py-2">
+                                            {{ __('No Redords Available') }}
+                                        </p>
+                                        <span class="mt-4">
+                                            <div wire:click="getForm" type="button" class="inline-flex cursor-pointer items-center px-3 py-2 shadow-sm text-sm font-medium text-indigo-700 bg-white hover:bg-gray-100 border border-indigo-600 rounded-md">
+                                            <x-icon.user-plus/>
+                                            {{ __('Add New Client') }}
+                                            </div>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
