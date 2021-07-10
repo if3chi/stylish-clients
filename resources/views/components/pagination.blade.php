@@ -26,19 +26,20 @@
                             {!! __('Previous') !!}
                         </a>
                     @endif
-                    
+
                     @if ($paginator->hasMorePages())
                         <a wire:click.prevent="nextPage" wire:loading.attr="disabled" rel="next"
                             class="cursor-pointer ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
                             {!! __('Next') !!}
                         </a>
                     @else
-                        <a  class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-50">
+                        <a
+                            class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-50">
                             {!! __('Next') !!}
                         </a>
                     @endif
                 </div>
             </nav>
-        </div>    
+        </div>
     @endif
 </div>

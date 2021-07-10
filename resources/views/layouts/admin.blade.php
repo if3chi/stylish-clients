@@ -1,6 +1,3 @@
-
-<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -70,7 +67,8 @@
                     d: {
                         begin: 1000 * data.index,
                         dur: 1000,
-                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height())
+                        .stringify(),
                         to: data.path.clone().stringify(),
                         easing: Chartist.Svg.Easing.easeOutQuint
                     }
@@ -96,7 +94,8 @@
                     d: {
                         begin: 500 * data.index,
                         dur: 1000,
-                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height())
+                        .stringify(),
                         to: data.path.clone().stringify(),
                         easing: Chartist.Svg.Easing.easeOutQuint
                     }

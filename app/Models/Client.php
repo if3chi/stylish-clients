@@ -18,24 +18,27 @@ class Client extends Model
         'dob' => 'date'
     ];
 
-    public function getBirthdayForHumanAttribute(){
+    public function getBirthdayForHumanAttribute()
+    {
         return $this->dob->format('M, d Y');
     }
-    
-    public function getDueBirthdayAttribute(){
+
+    public function getDueBirthdayAttribute()
+    {
         $birthday = Carbon::parse($this->dob)
-                        ->year(date('Y'));
+            ->year(date('Y'));
 
         $dueDay = Carbon::now()->diffInDays($birthday, false);
 
         return  $dueDay >= 0
-        ? $dueDay
-        : Carbon::now()->diffInDays($birthday->addYear(1), false);
+            ? $dueDay
+            : Carbon::now()->diffInDays($birthday->addYear(1), false);
     }
 
-    public function getImageUrlAttribute(){
+    public function getImageUrlAttribute()
+    {
         return $this->clientImage
-        ? Storage::disk('client')->url($this->clientImage)
-        : url('imgs/client.jpg');
+            ? Storage::disk('client')->url($this->clientImage)
+            : url('imgs/client.jpg');
     }
 }
