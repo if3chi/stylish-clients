@@ -1,7 +1,8 @@
 @props([
     'label' => false,
     'for' => false,
-    'secLabel' => 'Upload File'
+    'secLabel' => 'Upload File',
+    'error' => false,
 ])
 
 <div>
@@ -23,4 +24,8 @@
         </label>
       </div>
     </div>
+
+    @if ($error)
+      <p class="info mt-1 text-red-500 text-sm font-bold tracking-wide">{{ $error }}</p>
+    @endif
 </div>

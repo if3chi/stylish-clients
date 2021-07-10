@@ -25,7 +25,9 @@
     @stack('styles')
 </head>
 
-<body class="flex h-screen bg-gray-100 font-sans">
+<body>
+
+    <div class="flex bg-gray-100 font-sans">
 
     <!-- Side bar-->
     @include('partials.sidebar')
@@ -34,13 +36,11 @@
 
         @include('partials.nav')
 
-            <header class="bg-white shadow w-full flex-wrap text-indigo-800 tracking-wide font-bold">
-                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+            <x-notification />
+    
         {{ $slot }}
 
+    </div>
     </div>
 
     @livewireScripts

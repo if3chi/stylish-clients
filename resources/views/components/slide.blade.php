@@ -1,11 +1,9 @@
-@props(['title' => 'Add Client', 'message' => ''])
+@props(['title' => false, 'message' => false])
 
 
 <div 
-  x-data="{ open: true }" 
-  {{-- x-data="{ open: @entangle($attributes->wire('model')).defer }"  --}}
+  x-data="{ open: @entangle($attributes->wire('model')).defer }" 
   @keydown.window.escape="open = false"  
-  x-init="$watch(&quot;open&quot;, o => !o &amp;&amp; window.setTimeout(() => (open = true), 1000))"
   x-show="open" 
   class="fixed inset-0 overflow-hidden" 
   aria-labelledby="slide-over-title" 
@@ -69,76 +67,63 @@
                 <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
                   <!-- Client name -->
                   <x-input.group>
-                    <x-input.text type="text" label='First Name' for="firstname" name="firstname" id="firstname" placeholder="Ama">
-                      <x-slot name="icon">
-                        <x-icon.user class="w-4 h-4" />
-                      </x-slot>
+                    <x-input.text wire:model.lazy="editing.firstname" :error="$errors->first('editing.firstname')" type="text" label='First Name' for="firstname" name="firstname" id="firstname" placeholder="Ama">
+                      <x-icon.user class="w-4 h-4" />
                     </x-input.text>
                   </x-input.group>
 
                   <x-input.group>
-                    <x-input.text type="text" label='Last Name' for="lastname" name="lastname" id="lastname" placeholder="Kojo">
-                      <x-slot name="icon">
-                        <x-icon.user class="w-4 h-4" />
-                      </x-slot>
+                    <x-input.text wire:model.lazy="editing.lastname" :error="$errors->first('editing.lastname')" type="text" label='Last Name' for="lastname" name="lastname" id="lastname" placeholder="Kojo">
+                      <x-icon.user class="w-4 h-4" />
                     </x-input.text>
                   </x-input.group>
-                  
+
                   <!-- Image -->
                   <x-input.group>
-                    <x-input.file label="Photo" for="photo" id="photo" secLabel="Upload Image">
-                        <x-icon.avatar/>
+                    <x-input.file wire:model.lazy="newClientImage" label="Photo" for="photo" id="photo" secLabel="Upload Image" :error="$errors->first('newClientImage')">
+                        @if ($this->newClientImage)
+                          <img src="{{ $this->newClientImage->temporaryUrl() }}" alt="" srcset="">
+                        @else
+                          @if ($title === 'Add')
+                            <x-icon.avatar/>
+                          @else
+                            <img src="{{ $this->editingImageUrl }}" alt="" srcset="">                              
+                          @endif
+                        @endif
                     </x-input.file>
                   </x-input.group>
                   
                   <!-- Phone -->
-                  <fieldset class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:px-6 sm:py-5">
-                    <div>
-                      <label for="country" class="block text-sm font-medium text-gray-900 sm:mt-px sm:pt-2">Phone Number</label>
-                    </div>
-                    <div class="sm:col-span-2">
-                      <div>
-                        <label for="country" class="sr-only">Country</label>
-                        <select id="country" name="country" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-t-md bg-transparent focus:z-10 sm:text-sm border-gray-300">
-                          <option>Ghana</option>
-                          <option>Nigeria</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label for="phone" class="sr-only">Number</label>
-                        <input type="text" name="phone" id="phone" class="focus:ring-indigo-500 focus:border-indigo-500 relative block w-full rounded-none rounded-b-md bg-transparent focus:z-10 sm:text-sm border-gray-300" placeholder="0241234567">
-                      </div>
-                    </div>
-                  </fieldset>
+                  <x-input.group>
+                    <x-input.text wire:model.lazy="editing.phone" :error="$errors->first('editing.phone')" type="text" label="Client's phone" name="phone" id="phone" for="phone" placeholder="0241234567">
+                      <x-icon.phone class="w-4 h4" />
+                    </x-input.text>
+                  </x-input.group>
 
                   <!-- Email -->
                   <x-input.group>
-                    <x-input.text type="email" label="Client's Email" name="email" id="email" for="email" placeholder="client@email.com">
-                      <x-slot name="icon">
-                        <x-icon.mail class="w-4 h4" />
-                      </x-slot>
+                    <x-input.text wire:model.lazy="editing.email" :error="$errors->first('editing.email')" type="email" label="Client's Email" name="email" id="email" for="email" placeholder="client@email.com">
+                      <x-icon.mail class="w-4 h4" />
                     </x-input.text>
                   </x-input.group>
 
                   <!-- Birthday -->
                   <x-input.group>
-                    <x-input.date wire:model="birthday" :error="$errors->first('birthday')" type="text" label="Client's Birthday" name="birthday" id="birthday" for="birthday" placeholder="MM/DD/YYYY">
-                        <x-icon.calendar class="w-4 h4" />
+                    <x-input.date wire:model.lazy="birthday" :error="$errors->first('birthday')" type="text" label="Client's Birthday" name="birthday" id="birthday" for="birthday" placeholder="MM/DD/YYYY">
+                      <x-icon.calendar class="w-4 h4" />
                     </x-input.date>
                   </x-input.group>
                   
                   <!-- Address -->
                   <x-input.group>
-                    <x-input.text type="text" label="Client's Address" name="address" id="address" for="address" placeholder="No.: 2 that house on the right.">
-                      <x-slot name="icon">
-                        <x-icon.home class="w-4 h4" />
-                      </x-slot>
+                    <x-input.text wire:model.lazy="editing.address" :error="$errors->first('editing.address')" type="text" label="Client's Address" name="address" id="address" for="address" placeholder="No.: 2 that house on the right.">
+                      <x-icon.home class="w-4 h4" />
                     </x-input.text>
                   </x-input.group>
                   
                   <!-- Client Type -->
                   <x-input.group>
-                    <x-input.select label="Client Type" for="clientType" id="clientType"/>
+                    <x-input.select wire:model.lazy="editing.type" label="Client Type" for="clientType" id="clientType" :error="$errors->first('editing.type')"/>
                   </x-input.group>
                 </div>
               </div>
@@ -146,7 +131,7 @@
               <!-- Action buttons -->
               <div class="flex-shrink-0 px-4 border-t border-gray-200 py-5 sm:px-6">
                 <div class="space-x-3 flex justify-end">
-                  <button type="button" wire:click="$set('show_form', false)" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="open = false">
+                  <button type="button" wire:click.defer="$set('show_form', false)" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="open = false">
                     Cancel
                   </button>
                   <button type="submit" wire:click.prevent="save" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

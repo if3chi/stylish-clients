@@ -18,7 +18,7 @@ class ClientSeeder extends Seeder
             [
                 'firstname' => 'Ama' , 
                 'lastname' => 'Favor', 
-                'clientImage' => 'client.jpg', 
+                'clientImage' => '', 
                 'phone' => '0209372019',
                 'email' => 'amafavor@email.com', 
                 'dob' => '2001-08-09', 
@@ -30,7 +30,7 @@ class ClientSeeder extends Seeder
             [
                 'firstname' => 'Lovelyn' , 
                 'lastname' => 'Favor', 
-                'clientImage' => 'client2.jpg', 
+                'clientImage' => '', 
                 'phone' => '0209372019',
                 'email' => 'lovelynfavor@email.com', 
                 'dob' => '1998-01-09', 
