@@ -70,7 +70,7 @@
 
                             <!-- Image -->
                             <x-input.group>
-                                <x-input.file wire:model.lazy="newClientImage" label="Photo" for="photo" id="photo"
+                                <x-input.file wire:model.lazy="newClientImage" target="newClientImage" label="Photo" for="photo" id="photo"
                                     secLabel="Upload Image" :error="$errors->first('newClientImage')">
                                     @if ($this->newClientImage)
                                         <img src="{{ $this->newClientImage->temporaryUrl() }}" alt="" srcset="">
