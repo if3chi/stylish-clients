@@ -7,6 +7,7 @@ Stylish client is a client management system, built on top of laravel and other 
 - Livewire
 - AlpineJs
 - Laravel Breeze
+- and many more.
 
 and logo from [logodust](https://www.logodust.com/).
 

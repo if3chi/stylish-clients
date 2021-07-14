@@ -21,7 +21,7 @@
         <input {{ $attributes }} @focus="focused = true" @blur="focused = false" type="file" class="sr-only"/>
 
         <label for="{{ $for }}" :class="{'outline-none ring-2 ring-offset-2 ring-indigo-500': focused}" class="cursor-pointer ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50">
-          <x-icon.spinner wire:loading wire:target="{{ $target }}" class="w-6 h-6 mr-2" />
+          <x-icon.three-dots wire:loading wire:target="{{ $target }}" class="w-6 h-6 mr-2" />
           {{ $secLabel }}
         </label>
       </div>

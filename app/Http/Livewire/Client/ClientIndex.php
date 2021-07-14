@@ -36,13 +36,13 @@ class ClientIndex extends Component
             $this->form_title = 'Edit';
             $this->editing = $client;
             $this->editingImageUrl = $client->image_url;
-            $this->birthday = $this->editing->dob->format('Y-m-d');
+            $this->birthday = $client->dob->toDateFormat();
         }
 
         if (!$type) {
             $this->form_title = 'Add';
             $this->editing = Client::make();
-            $this->birthday = now()->format('Y-m-d');
+            $this->birthday = now()->toDateFormat();
         }
 
         $this->reset('newClientImage');
