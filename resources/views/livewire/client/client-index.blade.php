@@ -90,7 +90,9 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                                             <a href="#" wire:click.prevent="getForm('edit', {{ $client->id }})"
-                                                class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                                            <a href="#" wire:click.prevent="getDelModal({{ $client->id }})"
+                                                class="text-red-600 hover:text-red-900">Delete</a>
                                         </td>
                                     </tr>
                                 @empty
@@ -122,5 +124,6 @@
         </div>
     </div>
 
-    <x-slide wire:model="show_form" title="{{ $form_title }}" />
+    <x-slide wire:model="show_form" :title="$form_title" />
+    <x-delete wire:model="showDelModal" :name="$selectedRecord->firstname . ' ' . $selectedRecord->lastname" />
 </div>

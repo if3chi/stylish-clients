@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Client;
 
+use App\Http\Livewire\Traits\WithClientValidationRules;
 use App\Models\Client;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ClientIndex extends Component
 {
-    use WithPagination, WithFileUploads;
+    use WithPagination, WithFileUploads, WithClientValidationRules;
 
     public Client $editing;
     public $show_form = false;
@@ -18,17 +19,12 @@ class ClientIndex extends Component
     public $editingImageUrl;
     public $birthday;
     public $form_title = '';
+    public $showDelModal = false;
+    public $selectedRecord;
 
-    protected $rules = [
-        'birthday' => 'date',
-        'newClientImage' => 'nullable|image|max:1024',
-        'editing.firstname' => 'required|string|max:255|min:3',
-        'editing.lastname' => 'string|max:255|min:3',
-        'editing.phone' => 'required|phone:GH,NG',
-        'editing.email' => 'email',
-        'editing.address' => 'string|max:255|min:3',
-        'editing.type' => 'required|string|max:255|min:3',
-    ];
+    public function mount(){
+        $this->selectedRecord = Client::make();
+    }
 
     public function getForm($type = Null, Client $client)
     {
@@ -79,6 +75,23 @@ class ClientIndex extends Component
             'title' => $this->form_title === 'Edit' ? 'Updated Successfuly' : 'Added Successfuly',
             'body' => $this->editing->firstname . " " . $this->editing->lastname
         ]);
+    }
+
+    public function getDelModal(Client $client)
+    {
+        $this->selectedRecord = $client;
+        $this->showDelModal = true;
+    }
+
+    public function destroy()
+    {
+        if ($this->selectedRecord->clientImage) Storage::disk('client')->delete($this->selectedRecord->clientImage);
+        $this->selectedRecord->delete();
+        $this->notify([
+            'title' => 'Deleted Successfuly',
+            'body' => $this->selectedRecord->firstname . " " . $this->selectedRecord->lastname
+        ]);
+        $this->showDelModal = false;
     }
 
     public function render()
