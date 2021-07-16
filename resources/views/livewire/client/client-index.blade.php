@@ -125,5 +125,5 @@
     </div>
 
     <x-slide wire:model="show_form" :title="$form_title" />
-    <x-delete wire:model="showDelModal" :name="$selectedRecord->firstname . ' ' . $selectedRecord->lastname" />
+    <x-delete wire:model="showDelModal" :name="$this->setName($selectedRecord)" />
 </div>
