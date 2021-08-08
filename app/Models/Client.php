@@ -18,6 +18,11 @@ class Client extends Model
         'dob' => 'date'
     ];
 
+    public function appointment()
+    {
+        return $this->hasOne(Appointment::class);
+    }
+
     public function getBirthdayForHumanAttribute()
     {
         return $this->dob->format('M, d Y');
