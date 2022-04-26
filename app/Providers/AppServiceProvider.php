@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use Livewire\Component;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Component;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
 
         Component::macro('notify', function ($message) {
             $this->dispatchBrowserEvent('notify', $message);
+        });
+
+        Carbon::macro('toDateFormat', function(){
+            return $this->format('Y-m-d');
         });
     }
 }
