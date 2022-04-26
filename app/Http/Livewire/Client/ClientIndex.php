@@ -3,45 +3,30 @@
 namespace App\Http\Livewire\Client;
 
 use App\Models\Client;
-use Livewire\Component;
-use Livewire\WithPagination;
-use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
+use Livewire\{Component, WithFileUploads, WithPagination};
+use App\Http\Livewire\Traits\{WithUtilities, WithClientValidationRules};
 
 class ClientIndex extends Component
 {
-    use WithPagination, WithFileUploads;
+    use
+        WithUtilities,
+        WithPagination,
+        WithFileUploads,
+        WithClientValidationRules;
+
 
     public Client $editing;
-    public $show_form = false, $form_title = '';
-    public $newClientImage, $editingImageUrl, $birthday;
+    public $show_form = false, $form_title = '', $showDelModal = false;
+    public $newClientImage, $editingImageUrl, $birthday, $selectedRecord;
 
-    protected $rules = [
-        'birthday' => 'date',
-        'newClientImage' => 'nullable|image|max:1024',
-        'editing.firstname' => 'required|string|max:255|min:3',
-        'editing.lastname' => 'string|max:255|min:3',
-        'editing.phone' => 'required|phone:GH,NG',
-        'editing.email' => 'email',
-        'editing.address' => 'string|max:255|min:3',
-        'editing.type' => 'required|string|max:255|min:3',
-    ];
-
-    public function getForm($type = Null, Client $client): void
+    public function mount()
     {
-        if ($type == 'edit') {
-            $this->form_title = 'Edit';
-            $this->editing = $client;
-            $this->editingImageUrl = $client->image_url;
-            $this->birthday = $this->editing->dob->format('Y-m-d');
-        }
+        $this->selectedRecord = Client::make();
+    }
 
-        if (!$type) {
-            $this->form_title = 'Add';
-            $this->editing = Client::make();
-            $this->birthday = now()->format('Y-m-d');
-        }
-
+    public function getForm($type = 'add', Client $client): void
+    {
+        $this->setFormDetails($type, $client);
         $this->reset('newClientImage');
         $this->show_form = true;
     }
@@ -52,30 +37,41 @@ class ClientIndex extends Component
 
         $this->validate();
 
-        if ($this->newClientImage) {
-            if ($file_name) Storage::disk('client')->delete($file_name);
-            $file_name = $this->newClientImage->store('/', 'client');
-        }
+        $file_name = $this->processImage($file_name, $this->newClientImage);
 
         $this->editing->updateOrCreate(
             ['id' => $this->editing->id],
-            [
-                'dob' => $this->birthday,
-                'clientImage' =>  $file_name,
-                'firstname' => $this->editing->firstname,
-                'lastname' => $this->editing->lastname,
-                'phone' => $this->editing->phone,
-                'email' => $this->editing->email,
-                'address' => $this->editing->address,
-                'type' => $this->editing->type,
-            ]
+            $this->setDetails($file_name)
+        );
+
+        $this->notify(
+            $this->notificationMsg(
+                $this->form_title === 'Edit'
+                    ? 'Updated Successfuly'
+                    : 'Added Successfuly',
+                $this->editing
+            )
         );
 
         $this->show_form = false;
-        $this->notify([
-            'title' => $this->form_title === 'Edit' ? 'Updated Successfuly' : 'Added Successfuly',
-            'body' => $this->editing->firstname . " " . $this->editing->lastname
-        ]);
+    }
+
+    public function getDelModal(Client $client): void
+    {
+        $this->selectedRecord = $client;
+        $this->showDelModal = true;
+    }
+
+    public function destroy(): void
+    {
+        $this->delImage($this->selectedRecord->clientImage);
+        $this->selectedRecord->delete();
+
+        $this->notify(
+            $this->notificationMsg('Deleted Successfuly', $this->selectedRecord)
+        );
+
+        $this->showDelModal = false;
     }
 
     public function render()
