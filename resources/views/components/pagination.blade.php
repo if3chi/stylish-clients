@@ -5,11 +5,11 @@
                 aria-label="Pagination">
                 <div class="hidden sm:block">
                     <p class="text-sm text-gray-700">
-                        Showing
+                        <span>Showing</span>
                         <span class="font-medium">{{ $paginator->firstItem() }}</span>
-                        to
+                        <span>to</span>
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
-                        of
+                        <span>of</span>
                         <span class="font-medium">{{ $paginator->total() }}</span>
                         Clients
                     </p>
