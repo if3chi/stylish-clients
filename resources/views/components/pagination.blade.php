@@ -21,17 +21,17 @@
                             {!! __('Previous') !!}
                         </a>
                     @else
-                        <a wire:click.prevent="previousPage" wire:loading.attr="disabled" rel="prev"
-                            class="cursor-pointer relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        <button type="button" wire:click.prevent="previousPage" wire:loading.attr="disabled" rel="prev"
+                            class="cursor-pointer relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
                             {!! __('Previous') !!}
-                        </a>
+                        </button>
                     @endif
 
                     @if ($paginator->hasMorePages())
-                        <a wire:click.prevent="nextPage" wire:loading.attr="disabled" rel="next"
-                            class="cursor-pointer ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                        <button type="button" wire:click.prevent="nextPage" wire:loading.attr="disabled" rel="next"
+                            class="cursor-pointer ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none">
                             {!! __('Next') !!}
-                        </a>
+                        </button>
                     @else
                         <a
                             class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-50">

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Livewire\Client\ClientIndex;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Client\ClientIndex;
 
 /*
 |--------------------------------------------------------------------------

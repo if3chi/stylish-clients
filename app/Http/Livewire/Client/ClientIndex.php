@@ -13,11 +13,8 @@ class ClientIndex extends Component
     use WithPagination, WithFileUploads;
 
     public Client $editing;
-    public $show_form = false;
-    public $newClientImage;
-    public $editingImageUrl;
-    public $birthday;
-    public $form_title = '';
+    public $show_form = false, $form_title = '';
+    public $newClientImage, $editingImageUrl, $birthday;
 
     protected $rules = [
         'birthday' => 'date',
@@ -30,7 +27,7 @@ class ClientIndex extends Component
         'editing.type' => 'required|string|max:255|min:3',
     ];
 
-    public function getForm($type = Null, Client $client)
+    public function getForm($type = Null, Client $client): void
     {
         if ($type == 'edit') {
             $this->form_title = 'Edit';
@@ -49,7 +46,7 @@ class ClientIndex extends Component
         $this->show_form = true;
     }
 
-    public function save()
+    public function save(): void
     {
         $file_name = $this->editing->clientImage;
 
