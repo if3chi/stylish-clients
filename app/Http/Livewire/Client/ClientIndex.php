@@ -3,41 +3,35 @@
 namespace App\Http\Livewire\Client;
 
 use App\Models\Client;
-use Livewire\Component;
-use Livewire\WithPagination;
-use Livewire\WithFileUploads;
-use App\Http\Livewire\Traits\WithUtilities;
-use App\Http\Livewire\Traits\WithClientValidationRules;
+use Livewire\{Component, WithFileUploads, WithPagination};
+use App\Http\Livewire\Traits\{WithUtilities, WithClientValidationRules};
 
 class ClientIndex extends Component
 {
-    use WithPagination,
+    use
+        WithUtilities,
+        WithPagination,
         WithFileUploads,
-        WithClientValidationRules,
-        WithUtilities;
+        WithClientValidationRules;
 
 
     public Client $editing;
-    public $selectedRecord;
-    public $newClientImage;
-    public $form_title;
-    public $show_form = false;
-    public $showDelModal = false;
-
+    public $show_form = false, $form_title = '', $showDelModal = false;
+    public $newClientImage, $editingImageUrl, $birthday, $selectedRecord;
 
     public function mount()
     {
         $this->selectedRecord = Client::make();
     }
 
-    public function getForm($type = 'add', Client $client)
+    public function getForm($type = 'add', Client $client): void
     {
         $this->setFormDetails($type, $client);
         $this->reset('newClientImage');
         $this->show_form = true;
     }
 
-    public function save()
+    public function save(): void
     {
         $file_name = $this->editing->clientImage;
 
@@ -52,9 +46,9 @@ class ClientIndex extends Component
 
         $this->notify(
             $this->notificationMsg(
-                $this->form_title === 'Edit' 
-                ? 'Updated Successfuly' 
-                : 'Added Successfuly', 
+                $this->form_title === 'Edit'
+                    ? 'Updated Successfuly'
+                    : 'Added Successfuly',
                 $this->editing
             )
         );
@@ -62,13 +56,13 @@ class ClientIndex extends Component
         $this->show_form = false;
     }
 
-    public function getDelModal(Client $client)
+    public function getDelModal(Client $client): void
     {
         $this->selectedRecord = $client;
         $this->showDelModal = true;
     }
 
-    public function destroy()
+    public function destroy(): void
     {
         $this->delImage($this->selectedRecord->clientImage);
         $this->selectedRecord->delete();
@@ -76,7 +70,7 @@ class ClientIndex extends Component
         $this->notify(
             $this->notificationMsg('Deleted Successfuly', $this->selectedRecord)
         );
-        
+
         $this->showDelModal = false;
     }
 

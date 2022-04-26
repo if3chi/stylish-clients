@@ -8,8 +8,7 @@ use Illuminate\Support\Facades\Storage;
 trait WithUtilities
 {
 
-    public $birthday;
-    public $editingImageUrl;
+    public $birthday, $editingImageUrl;
 
 
     public function setName($client)
@@ -17,7 +16,7 @@ trait WithUtilities
         return $client->firstname . ' ' . $client->lastname;
     }
 
-    public function setFormDetails(string $type, Client $client)
+    public function setFormDetails(string $type, Client $client): void
     {
         if ($type == 'edit') {
             $this->form_title = 'Edit';
@@ -49,7 +48,7 @@ trait WithUtilities
             ];
     }
 
-    public function processImage($filename, $newImage)
+    public function processImage($filename, $newImage): string
     {
         if ($newImage) {
             $this->delImage($filename);
@@ -59,12 +58,12 @@ trait WithUtilities
         return $filename;
     }
 
-    public function delImage($filename)
+    public function delImage($filename): void
     {
         if ($filename) Storage::disk('client')->delete($filename);
     }
 
-    public function notificationMsg($title, $body)
+    public function notificationMsg($title, $body): array
     {
         return [
             'title' => $title,

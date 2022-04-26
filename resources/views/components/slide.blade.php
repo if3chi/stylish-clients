@@ -1,9 +1,7 @@
 @props(['title' => false, 'message' => false])
 
-
-<div x-data="{ open: @entangle($attributes->wire('model')).defer }" @keydown.window.escape="open = false" x-show="open"
-    class="fixed inset-0 overflow-hidden" aria-labelledby="slide-over-title" x-ref="dialog" aria-modal="true"
-    style="display: none;">
+<div x-data="{ open: @entangle($attributes->wire('model')).defer }" @keydown.window.escape="open = false" x-show="open" class="fixed inset-0 overflow-hidden"
+    aria-labelledby="slide-over-title" x-ref="dialog" aria-modal="true" style="display: none;">
     <div class="absolute inset-0 overflow-hidden">
         <div x-description="Background overlay, show/hide based on slide-over state."
             class="absolute inset-0 bg-gray-500 opacity-75" x-transition:enter="ease-out duration-300"
@@ -53,25 +51,24 @@
                         <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
                             <!-- Client name -->
                             <x-input.group>
-                                <x-input.text wire:model.lazy="editing.firstname"
-                                    :error="$errors->first('editing.firstname')" type="text" label='First Name'
-                                    for="firstname" name="firstname" id="firstname" placeholder="Ama">
+                                <x-input.text wire:model.lazy="editing.firstname" :error="$errors->first('editing.firstname')" type="text"
+                                    label='First Name' for="firstname" name="firstname" id="firstname"
+                                    placeholder="Ama">
                                     <x-icon.user class="w-4 h-4" />
                                 </x-input.text>
                             </x-input.group>
 
                             <x-input.group>
-                                <x-input.text wire:model.lazy="editing.lastname"
-                                    :error="$errors->first('editing.lastname')" type="text" label='Last Name'
-                                    for="lastname" name="lastname" id="lastname" placeholder="Kojo">
+                                <x-input.text wire:model.lazy="editing.lastname" :error="$errors->first('editing.lastname')" type="text"
+                                    label='Last Name' for="lastname" name="lastname" id="lastname" placeholder="Kojo">
                                     <x-icon.user class="w-4 h-4" />
                                 </x-input.text>
                             </x-input.group>
 
                             <!-- Image -->
                             <x-input.group>
-                                <x-input.file wire:model.lazy="newClientImage" target="newClientImage" label="Photo" for="photo" id="photo"
-                                    secLabel="Upload Image" :error="$errors->first('newClientImage')">
+                                <x-input.file wire:model.lazy="newClientImage" target="newClientImage" label="Photo"
+                                    for="photo" id="photo" secLabel="Upload Image" :error="$errors->first('newClientImage')">
                                     @if ($this->newClientImage)
                                         <img src="{{ $this->newClientImage->temporaryUrl() }}" alt="" srcset="">
                                     @else
@@ -86,17 +83,16 @@
 
                             <!-- Phone -->
                             <x-input.group>
-                                <x-input.text wire:model.lazy="editing.phone" :error="$errors->first('editing.phone')"
-                                    type="text" label="Client's phone" name="phone" id="phone" for="phone"
-                                    placeholder="0241234567">
+                                <x-input.text wire:model.lazy="editing.phone" :error="$errors->first('editing.phone')" type="text"
+                                    label="Client's phone" name="phone" id="phone" for="phone" placeholder="0241234567">
                                     <x-icon.phone class="w-4 h4" />
                                 </x-input.text>
                             </x-input.group>
 
                             <!-- Email -->
                             <x-input.group>
-                                <x-input.text wire:model.lazy="editing.email" :error="$errors->first('editing.email')"
-                                    type="email" label="Client's Email" name="email" id="email" for="email"
+                                <x-input.text wire:model.lazy="editing.email" :error="$errors->first('editing.email')" type="email"
+                                    label="Client's Email" name="email" id="email" for="email"
                                     placeholder="client@email.com">
                                     <x-icon.mail class="w-4 h4" />
                                 </x-input.text>
@@ -113,9 +109,8 @@
 
                             <!-- Address -->
                             <x-input.group>
-                                <x-input.text wire:model.lazy="editing.address"
-                                    :error="$errors->first('editing.address')" type="text" label="Client's Address"
-                                    name="address" id="address" for="address"
+                                <x-input.text wire:model.lazy="editing.address" :error="$errors->first('editing.address')" type="text"
+                                    label="Client's Address" name="address" id="address" for="address"
                                     placeholder="No.: 2 that house on the right.">
                                     <x-icon.home class="w-4 h4" />
                                 </x-input.text>
@@ -145,7 +140,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

@@ -3,10 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes};
 
 class Client extends Model
 {
@@ -28,7 +27,7 @@ class Client extends Model
         return $this->dob->format('M, d Y');
     }
 
-    public function getDueBirthdayAttribute()
+    public function getDueBirthdayAttribute(): int
     {
         $birthday = Carbon::parse($this->dob)
             ->year(date('Y'));
@@ -40,7 +39,7 @@ class Client extends Model
             : Carbon::now()->diffInDays($birthday->addYear(1), false);
     }
 
-    public function getImageUrlAttribute()
+    public function getImageUrlAttribute(): string
     {
         return $this->clientImage
             ? Storage::disk('client')->url($this->clientImage)

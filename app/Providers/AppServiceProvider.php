@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Carbon\Carbon;
+use Livewire\Component;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Component;
 
 class AppServiceProvider extends ServiceProvider
 {

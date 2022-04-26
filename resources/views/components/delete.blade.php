@@ -1,7 +1,7 @@
 @props(['title' => false, 'name' => false])
 
 <div x-data="{ open: @entangle($attributes->wire('model')) }" @keydown.window.escape="open = false" x-show="open"
-    class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true">
+    class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" x-ref="dialog" aria-modal="true" x-cloak>
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 
         <div x-show="open" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
@@ -10,7 +10,6 @@
             x-description="Background overlay, show/hide based on modal state."
             class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="open = true" aria-hidden="true">
         </div>
-
 
         <!-- This element is to trick the browser into centering the modal contents. -->
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
@@ -51,6 +50,5 @@
                 </button>
             </div>
         </div>
-
     </div>
 </div>
